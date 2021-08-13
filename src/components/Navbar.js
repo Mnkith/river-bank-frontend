@@ -7,6 +7,7 @@ import { checkAuth } from "../actions/auth";
 class Navbar extends React.Component {
   componentDidMount() {
     this.props.dispatchCheckAuth();
+    
   }
 
   renderAuthLinks() {
@@ -53,7 +54,7 @@ class Navbar extends React.Component {
               exact
               to='/'
             >
-              NormalRoute
+              Home
             </NavLink>
             <NavLink
               className='p-4 block sm:inline-block'
