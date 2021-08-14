@@ -6,18 +6,18 @@ const initialState = {
 
 export default function authReducer(state = [], action) {
   switch (action.type) {
-    case ADD_ACCOUNT:
+    case 'BUSY_ADDING_ACCOUNT':
       return {
         authChecked: true,
         loggedIn: true,
         currentUser: action.payload,
       };
-    // case NOT_AUTHENTICATED:
-    //   return {
-    //     authChecked: true,
-    //     loggedIn: false,
-    //     currentUser: {}
-    //   };
+    case 'ADD_ACCOUNT':
+      return {
+        authChecked: true,
+        loggedIn: false,
+        currentUser: {}
+      };
     default:
       return state;
   }

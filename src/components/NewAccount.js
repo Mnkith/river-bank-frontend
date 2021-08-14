@@ -38,7 +38,7 @@ class NewAccount extends React.Component {
     event.preventDefault();
     const { type, number, exp } = this.state;
     this.props
-      .addAccount({ type, number, exp })
+      .addAccount({ type, number, exp, user_id: this.props.data.id })
       // .then(() => this.props.history.push(`/${this.props.data.name}`))
       // .catch((errors) => this.setState({ errors }));
   };
@@ -121,6 +121,11 @@ class NewAccount extends React.Component {
       </Container>
     )
   }
+}
+
+const mapStateToProps = ( { auth:{currentUser: { data }} } ) => {
+  // console.log(data)
+  return { data }
 }
 
 // const mapDispatchToProps = dispatch => {
