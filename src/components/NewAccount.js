@@ -15,16 +15,22 @@ import Nav from 'react-bootstrap/Nav';
 class NewAccount extends React.Component {
 
   state = {
-    name: "",
-    email: "",
-    password: "",
-    errors: {status: {message: ""}}
+    type: "",
+    number: "",
+    exp: "",
+    errors: { status: { message: "" } }
   };
 
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
-    });
+    }, console.log(this.state, event.target.name, event.target.value));
+  };
+
+  handleSelect = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    }, console.log(this.state, event.target.name, event.target.value));
   };
 
   handleSubmit = (event) => {
@@ -48,71 +54,45 @@ class NewAccount extends React.Component {
         <Card body style={{ width: '33rem' }} className='position-absolute start-50 translate-middle-x'>
           <Card.Body>
             <Form onSubmit={this.handleSubmit}>
-            <h1 className='font-bold text-3xl mb-2'>Sign Up</h1>
-        {/* <p className='h-8 text-red-400'>{this.state.errors.status.message}</p> */}
+              <h1 className='font-bold text-3xl mb-2'>Add new bank account</h1>
+              {/* <p className='h-8 text-red-400'>{this.state.errors.status.message}</p> */}
 
-        <Form.Group className="mb-3" controlId="formBasicName">
-                <FloatingLabel
-                  controlId="floatingInput"
-                  label="Your name"
-                  className="mb-3 text-muted"
+              <Form.Group className="mb-3" controlId="formBasicName">
+
+                <Form.Select
+                  className="me-sm-2" id="inlineFormCustomSelect"
+                  onSelect={this.handleSelect}
+                  name='type'
+                  // value={this.state.type}
                 >
-                  <Form.Control
-                    type="name"
-                    placeholder="Enter your name"
-                    name='name'
-                    // id='email'
-                    onChange={this.handleChange}
-                    value={this.state.name}
-                  />
-                </FloatingLabel>
-                <Form.Text className="text-muted">
-                  We'll never share your email with anyone else.
-                </Form.Text>
+                  <option >Select account type</option>
+                  <option name='type' value="Checking">Checking</option>
+                  <option name='type' value="Credit">Credit</option>
+                  {/* <option name='type' value="3">Three</option> */}
+                </Form.Select>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <FloatingLabel
                   controlId="floatingInput"
-                  label="Email address"
+                  label="Card number"
                   className="mb-3 text-muted"
                 >
                   <Form.Control
-                    type="email"
-                    placeholder="Enter email"
-                    name='email'
+                    type="input"
+                    placeholder="Enter card number"
+                    name='number'
                     // id='email'
                     onChange={this.handleChange}
-                    value={this.state.email}
+                    value={this.state.number}
                   />
                 </FloatingLabel>
-                <Form.Text className="text-muted">
-                  We'll never share your email with anyone else.
-                </Form.Text>
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicPassword">
-                <FloatingLabel
-                  controlId="floatingInput"
-                  label="Password"
-                  className="mb-3 text-muted"
-                >
-                  <Form.Control
-                    type="password"
-                    placeholder="Password"
-                    name='password'
-                    // id='password'
-                    onChange={this.handleChange}
-                    value={this.state.password}
-                  />
-                </FloatingLabel>
-
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Check me out" />
-              </Form.Group>
+              
+              
               <Button variant="primary" type="submit" >
-              Sign Up
+                Add account
               </Button>
             </Form>
           </Card.Body>
