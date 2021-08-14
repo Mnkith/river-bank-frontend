@@ -30,9 +30,13 @@ class Signup extends React.Component {
     const { name, email, password } = this.state;
     this.props
       .dispatchSignupUser({ name, email, password })
-      .then(() => this.props.history.push("/"))
+      .then(() => this.props.history.push(`/${name}`))
       .catch((errors) => this.setState({ errors }));
   };
+
+  componentDidMount(){
+    // document.body.style.backgroundImage = "url(/signup-image.jpg)"
+  }
 
   render() {
     return (
