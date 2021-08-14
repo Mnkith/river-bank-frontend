@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { addAccount } from "../actions/accounts";
 import { NavLink } from "react-router-dom";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Card from 'react-bootstrap/Card';
@@ -35,11 +36,11 @@ class NewAccount extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { name, email, password } = this.state;
+    const { type, number, exp } = this.state;
     this.props
-      .dispatchSignupUser({ name, email, password })
-      .then(() => this.props.history.push(`/${this.props.data.name}`))
-      .catch((errors) => this.setState({ errors }));
+      .addAccount({ type, number, exp })
+      // .then(() => this.props.history.push(`/${this.props.data.name}`))
+      // .catch((errors) => this.setState({ errors }));
   };
 
   render() {
@@ -99,7 +100,7 @@ class NewAccount extends React.Component {
                     type="date"
                     placeholder="Enter expiration date"
                     name='exp'
-                    // id='email'
+                    id='exp'
                     onChange={this.handleChange}
                     // value={this.state.number}
                   />
@@ -122,4 +123,8 @@ class NewAccount extends React.Component {
   }
 }
 
-export default NewAccount
+// const mapDispatchToProps = dispatch => {
+
+// }
+
+export default connect(null, { addAccount })(NewAccount)

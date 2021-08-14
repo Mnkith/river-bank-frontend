@@ -18,8 +18,8 @@ class Signup extends React.Component {
     password: "",
     errors: {status: {message: ""}}
   };
-
   handleChange = (event) => {
+    // console.log(this.props)
     this.setState({
       [event.target.name]: event.target.value
     });
