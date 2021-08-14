@@ -5,6 +5,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
 import withAuth from "./components/auth/withAuth";
+import NewAccount from "./components/NewAccount";
 import UserAccounts from './containers/UserAccounts'
 
 
