@@ -30,7 +30,7 @@ class Signup extends React.Component {
     const { name, email, password } = this.state;
     this.props
       .dispatchSignupUser({ name, email, password })
-      .then(() => this.props.history.push(`/${name}`))
+      .then(() => this.props.history.push(`/${this.props.data.name}`))
       .catch((errors) => this.setState({ errors }));
   };
 
@@ -127,10 +127,15 @@ class Signup extends React.Component {
   }
 }
 
+const mapStateToProps = ( { auth:{currentUser: { data }} } ) => {
+  console.log(data)
+  return { data }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     dispatchSignupUser: (credentials) => dispatch(signupUser(credentials))
   };
 };
 
-export default connect(null, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

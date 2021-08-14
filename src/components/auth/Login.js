@@ -20,7 +20,7 @@ class Login extends React.Component {
     const { email, password } = this.state;
     this.props
       .dispatchLoginUser({ email, password })
-      .then(() => {console.log(this.props); this.props.history.push(`/${this.props.data.name}`)})
+      .then(() => this.props.history.push(`/${this.props.data.name}`))
       .catch(() => this.setState({ error: true }));
   };
 
@@ -68,7 +68,7 @@ class Login extends React.Component {
   }
 }
 
-const mapStateToProps = ( { auth:{currentUser: { data }} } ) => {
+const mapStateToProps = ( { auth: {currentUser: { data } } } ) => {
   console.log(data)
   return { data }
 }
