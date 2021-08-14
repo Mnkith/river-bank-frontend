@@ -24,7 +24,7 @@ function App() {
           />
           <Route exact path='/signup' component={Signup} />
           <Route exact path='/login' component={Login} />
-          <Route exact path='/new_account' component={Login} />
+          <Route exact path='/new_account' component={NewAccount} />
           <Route exact path='/:name' render={ rp => <UserAccounts { ...rp } />} />
         </Switch>
       </Router>
