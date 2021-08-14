@@ -69,7 +69,7 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = ( { auth: {currentUser: { data } } } ) => {
-  // console.log(data)
+  console.log(data)
   return { data }
 }
 

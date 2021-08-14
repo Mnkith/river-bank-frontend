@@ -5,6 +5,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
 import withAuth from "./components/auth/withAuth";
+import UserAccounts from '.containers/UserAccounts'
 
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
           />
           <Route exact path='/signup' component={Signup} />
           <Route exact path='/login' component={Login} />
-          <Route exact path='/:name' render={(rp) => <div>hello {rp.match.params.name}</div>} />
+          <Route exact path='/:name' render={ rp => <UserAccounts { ...rp } />} />
         </Switch>
       </Router>
     </div>
