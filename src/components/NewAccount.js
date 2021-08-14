@@ -24,14 +24,14 @@ class NewAccount extends React.Component {
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
-    }, console.log(this.state, event.target.name, event.target.value));
+    }, () => console.log(this.state, event.target.name, event.target.value));
   };
 
-  handleSelect = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value
-    }, console.log(this.state, event.target.name, event.target.value));
-  };
+  // handleSelect = (event) => {
+  //   this.setState({
+  //     [event.target.name]: event.target.value
+  //   });
+  // };
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -61,7 +61,7 @@ class NewAccount extends React.Component {
 
                 <Form.Select
                   className="me-sm-2" id="inlineFormCustomSelect"
-                  onSelect={this.handleSelect}
+                  onChange={this.handleChange}
                   name='type'
                   // value={this.state.type}
                 >
@@ -85,6 +85,23 @@ class NewAccount extends React.Component {
                     // id='email'
                     onChange={this.handleChange}
                     value={this.state.number}
+                  />
+                </FloatingLabel>
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <FloatingLabel
+                  controlId="floatingInput"
+                  label="Expiration date"
+                  className="mb-3 text-muted"
+                >
+                  <Form.Control
+                    type="date"
+                    placeholder="Enter expiration date"
+                    name='exp'
+                    // id='email'
+                    onChange={this.handleChange}
+                    // value={this.state.number}
                   />
                 </FloatingLabel>
               </Form.Group>
