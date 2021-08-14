@@ -8,6 +8,7 @@ import withAuth from "./components/auth/withAuth";
 
 
 function App() {
+  console.log(withAuth(ProtectedRoute))
   return (
     <div className='App'>
       <Router>
@@ -17,10 +18,12 @@ function App() {
           <Route
             exact
             path='/protected_route'
-            component={withAuth(ProtectedRoute)}
+            
+            component={ withAuth(ProtectedRoute)}
           />
           <Route exact path='/signup' component={Signup} />
           <Route exact path='/login' component={Login} />
+          <Route exact path='/:name' render={(rp) => <div>hello {rp.match.params.name}</div>} />
         </Switch>
       </Router>
     </div>
