@@ -22,11 +22,12 @@ function App() {
             path='/protected_route'
             
             component={ withAuth(ProtectedRoute)}
+            // component={ withAuth(UserAccounts)}
           />
           <Route exact path='/signup' component={Signup} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/new_account' component={NewAccount} />
-          <Route exact path='/:name' render={ rp => <UserAccounts { ...rp } />} />
+          <Route exact path='/:name' component={ withAuth(UserAccounts) } />
         </Switch>
       </Router>
     </div>

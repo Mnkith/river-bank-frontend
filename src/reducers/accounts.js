@@ -1,23 +1,14 @@
-const initialState = {
-  type: false,
-  loggedIn: false,
-  currentUser: {}
-};
 
-export default function authReducer(state = [], action) {
+export default function accountsReducer(state = {}, action) {
   switch (action.type) {
     case 'BUSY_ADDING_ACCOUNT':
-      return {
-        authChecked: true,
-        loggedIn: true,
-        currentUser: action.payload,
-      };
+      console.log('BUSY_ADDING_ACCOUNT')
+      return state
+      ;
     case 'ADD_ACCOUNT':
-      return {
-        authChecked: true,
-        loggedIn: false,
-        currentUser: {}
-      };
+      console.log('inside ADD_ACCOuNT', action.account)
+      return action.account
+      
     default:
       return state;
   }

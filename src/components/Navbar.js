@@ -7,7 +7,6 @@ import { checkAuth } from "../actions/auth";
 class Navbar extends React.Component {
   componentDidMount() {
     this.props.dispatchCheckAuth();
-    
   }
 
   renderAuthLinks() {
@@ -44,6 +43,8 @@ class Navbar extends React.Component {
   }
 
   render() {
+    // console.log('navbar rendered')
+    // console.log(this.props.loggedIn)
     return (
       <nav className='bg-blue-50 text-blue-500'>
         <div className='w-11/12 max-w-6xl mx-auto grid sm:grid-cols-3 md:grid-cols-4'>

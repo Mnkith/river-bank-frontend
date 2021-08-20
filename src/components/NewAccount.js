@@ -1,22 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 import { addAccount } from "../actions/accounts";
-import { NavLink } from "react-router-dom";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
-import Toast from 'react-bootstrap/Toast';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Nav from 'react-bootstrap/Nav';
 
 
 class NewAccount extends React.Component {
 
   state = {
-    type: "",
+    acccount_type: "",
     number: "",
     exp: "",
     errors: { status: { message: "" } }
@@ -25,22 +20,23 @@ class NewAccount extends React.Component {
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
-    }, () => console.log(this.state, event.target.name, event.target.value));
+    });
   };
 
-  // handleSelect = (event) => {
-  //   this.setState({
-  //     [event.target.name]: event.target.value
-  //   });
-  // };
+  getRandomBalance = (min, max) => {
+    min = Math.ceil(min)
+    max = Math.floor(max)
+    return Math.floor(Math.random() * (max - min + 1) + min) / 100
+  }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { type, number, exp } = this.state;
+    const available_balance = this.getRandomBalance(300000, 700000)
+    const { acccount_type, number, exp } = this.state;
     this.props
-      .addAccount({ type, number, exp, user_id: this.props.data.id })
-      // .then(() => this.props.history.push(`/${this.props.data.name}`))
-      // .catch((errors) => this.setState({ errors }));
+      .addAccount({ acccount_type, number, exp, available_balance, user_id: this.props.data.id })
+      .then(() => this.props.history.push(`/${this.props.data.name}`))
+      .catch((errors) => this.setState({ errors }));
   };
 
   render() {
@@ -58,12 +54,12 @@ class NewAccount extends React.Component {
               <h1 className='font-bold text-3xl mb-2'>Add new bank account</h1>
               {/* <p className='h-8 text-red-400'>{this.state.errors.status.message}</p> */}
 
-              <Form.Group className="mb-3" controlId="formBasicName">
+              <Form.Group className="mb-3" >
 
                 <Form.Select
                   className="me-sm-2" id="inlineFormCustomSelect"
                   onChange={this.handleChange}
-                  name='type'
+                  name='acccount_type'
                   // value={this.state.type}
                 >
                   <option >Select account type</option>
@@ -73,14 +69,14 @@ class NewAccount extends React.Component {
                 </Form.Select>
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Group className="mb-3" >
                 <FloatingLabel
-                  controlId="floatingInput"
                   label="Card number"
                   className="mb-3 text-muted"
                 >
                   <Form.Control
-                    type="input"
+                    type="number"
+                    pattern="\d*"
                     placeholder="Enter card number"
                     name='number'
                     // id='email'
@@ -90,9 +86,8 @@ class NewAccount extends React.Component {
                 </FloatingLabel>
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Group className="mb-3" >
                 <FloatingLabel
-                  controlId="floatingInput"
                   label="Expiration date"
                   className="mb-3 text-muted"
                 >
@@ -132,4 +127,4 @@ const mapStateToProps = ( { auth:{currentUser: { data }} } ) => {
 
 // }
 
-export default connect(null, { addAccount })(NewAccount)
+export default connect(mapStateToProps, { addAccount })(NewAccount)

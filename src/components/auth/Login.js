@@ -18,10 +18,10 @@ class Login extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { email, password } = this.state;
-    this.props
+    console.log(this.props
       .dispatchLoginUser({ email, password })
       .then(() => this.props.history.push(`/${this.props.data.name}`))
-      .catch(() => this.setState({ error: true }));
+      .catch(() => this.setState({ error: true })))
   };
 
   render() {

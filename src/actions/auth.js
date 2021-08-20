@@ -28,8 +28,8 @@ export const signupUser = (credentials) => {
         setToken(res.headers.get("Authorization"));
         return res
           .json()
-          .then((userJson) =>
-            dispatch({ type: AUTHENTICATED, payload: userJson })
+          .then((userJson) =>{ console.log(userJson)
+            dispatch({ type: AUTHENTICATED, payload: userJson })}
           );
       } else {
         return res.json().then((errors) => {
@@ -54,11 +54,13 @@ export const loginUser = (credentials) => {
     }).then((res) => {
       if (res.ok) {
         setToken(res.headers.get("Authorization"));
-        return res
+        const user= res
           .json()
           .then((userJson) =>{ console.log(userJson)
             dispatch({ type: AUTHENTICATED, payload: userJson })}
           );
+          console.log(user)
+          return user
       } else {
         return res.json().then((errors) => {
           dispatch({ type: NOT_AUTHENTICATED });
@@ -92,6 +94,7 @@ export const logoutUser = () => {
 };
 
 export const checkAuth = () => {
+  console.log('checkAuth is called')
   return (dispatch) => {
     return fetch("http://localhost:3001/current_user", {
       headers: {
@@ -101,10 +104,12 @@ export const checkAuth = () => {
       }
     }).then((res) => {
       if (res.ok) {
-        return res.json().then(user => dispatch({type: AUTHENTICATED, payload: user}))
+        return res.json().then(user => {console.log(user);dispatch({type: AUTHENTICATED, payload: user})})
       } else {
         return Promise.reject(dispatch({type: NOT_AUTHENTICATED}))
       }
     });
   };
 };
+
+export default getToken

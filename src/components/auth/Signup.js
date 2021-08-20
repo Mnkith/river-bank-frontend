@@ -4,12 +4,12 @@ import { signupUser } from "../../actions/auth";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
-import Toast from 'react-bootstrap/Toast';
+// import Toast from 'react-bootstrap/Toast';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Nav from 'react-bootstrap/Nav';
+// import Navbar from 'react-bootstrap/Navbar';
+// import NavDropdown from 'react-bootstrap/NavDropdown';
+// import Nav from 'react-bootstrap/Nav';
 
 class Signup extends React.Component {
   state = {
@@ -31,22 +31,12 @@ class Signup extends React.Component {
     this.props
       .dispatchSignupUser({ name, email, password })
       .then(() => this.props.history.push(`/${this.props.data.name}`))
-      .catch((errors) => this.setState({ errors }));
-  };
-
-  componentDidMount(){
-    // document.body.style.backgroundImage = "url(/signup-image.jpg)"
+      .catch((errors) => this.setState({ errors }))
   }
 
   render() {
     return (
       <Container className="position-relative p-3">
-
-
-
-
-        {/* <div style={{width: '50px', height: '50px', backgroundColor: 'black'}} className="position-absolute top-50 start-50 translate-middle">
-      </div> */}
         <Card body style={{ width: '33rem' }} className='position-absolute start-50 translate-middle-x'>
           <Card.Body>
             <Form onSubmit={this.handleSubmit}>
@@ -127,9 +117,10 @@ class Signup extends React.Component {
   }
 }
 
-const mapStateToProps = ( { auth:{currentUser: { data }} } ) => {
-  // console.log(data)
-  return { data }
+const mapStateToProps = ( s ) => {
+  console.log(s)
+
+  return { data: s.auth.currentUser.data }
 }
 
 const mapDispatchToProps = (dispatch) => {
