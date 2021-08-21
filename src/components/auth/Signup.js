@@ -16,7 +16,7 @@ class Signup extends React.Component {
     name: "",
     email: "",
     password: "",
-    errors: {},
+    errors: { status: { name: [], email: [], password: [] } },
     validated: false
   };
   handleChange = (event) => {
@@ -56,12 +56,12 @@ class Signup extends React.Component {
                     type="name"
                     placeholder="Enter your name"
                     name='name'
-                    // id='email'
-                    // onChange={this.handleChange}
-                    // value={this.state.name}
+                  // id='email'
+                  // onChange={this.handleChange}
+                  // value={this.state.name}
                   />
                   <Form.Control.Feedback type="invalid">
-                    Please provide a valid zip.
+                    Name {this.state.errors.status.name[0]}
                   </Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
@@ -73,6 +73,7 @@ class Signup extends React.Component {
                   className="mb-3 text-muted"
                 >
                   <Form.Control
+                    required
                     type="email"
                     placeholder="Enter email"
                     name='email'
@@ -80,6 +81,9 @@ class Signup extends React.Component {
                     onChange={this.handleChange}
                     value={this.state.email}
                   />
+                  <Form.Control.Feedback type="invalid">
+                    Email {this.state.errors.status.email[0]}
+                  </Form.Control.Feedback>
                 </FloatingLabel>
                 <Form.Text className="text-muted">
                   We'll never share your email with anyone else.
