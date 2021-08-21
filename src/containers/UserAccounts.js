@@ -20,7 +20,7 @@ class UserAccounts extends React.Component {
       <p>accounts: {this.props.auth.currentUser.data.accounts.length}</p>
       {this.props.auth.currentUser.data.accounts.length > 0 ?
       <>
-      {this.props.auth.currentUser.data.accounts[1].exp}
+      {/* {this.props.auth.currentUser.data.accounts[1].exp} */}
       <p>
       <NavLink exact to='/new_account'>click here to add new account</NavLink>
       </p>

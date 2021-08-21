@@ -42,30 +42,21 @@ class NewAccount extends React.Component {
   render() {
     return (
       <Container className="position-relative p-3">
-
-
-
-
-        {/* <div style={{width: '50px', height: '50px', backgroundColor: 'black'}} className="position-absolute top-50 start-50 translate-middle">
-      </div> */}
         <Card body style={{ width: '33rem' }} className='position-absolute start-50 translate-middle-x'>
           <Card.Body>
             <Form onSubmit={this.handleSubmit}>
               <h1 className='font-bold text-3xl mb-2'>Add new bank account</h1>
-              {/* <p className='h-8 text-red-400'>{this.state.errors.status.message}</p> */}
-
+              <p className='h-8 text-red-400'><small>{this.state.errors.status.message}</small></p>
               <Form.Group className="mb-3" >
 
                 <Form.Select
                   className="me-sm-2" id="inlineFormCustomSelect"
                   onChange={this.handleChange}
                   name='acccount_type'
-                  // value={this.state.type}
                 >
                   <option >Select account type</option>
                   <option name='type' value="Checking">Checking</option>
                   <option name='type' value="Credit">Credit</option>
-                  {/* <option name='type' value="3">Three</option> */}
                 </Form.Select>
               </Form.Group>
 
@@ -79,7 +70,6 @@ class NewAccount extends React.Component {
                     pattern="\d*"
                     placeholder="Enter card number"
                     name='number'
-                    // id='email'
                     onChange={this.handleChange}
                     value={this.state.number}
                   />
@@ -97,7 +87,6 @@ class NewAccount extends React.Component {
                     name='exp'
                     id='exp'
                     onChange={this.handleChange}
-                    // value={this.state.number}
                   />
                 </FloatingLabel>
               </Form.Group>
@@ -110,9 +99,6 @@ class NewAccount extends React.Component {
             </Form>
           </Card.Body>
         </Card>
-
-        {/* </div> */}
-
       </Container>
     )
   }

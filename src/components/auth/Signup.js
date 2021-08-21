@@ -16,7 +16,8 @@ class Signup extends React.Component {
     name: "",
     email: "",
     password: "",
-    errors: {status: {message: ""}}
+    errors: {},
+    validated: false
   };
   handleChange = (event) => {
     // console.log(this.props)
@@ -26,12 +27,13 @@ class Signup extends React.Component {
   };
 
   handleSubmit = (event) => {
+
     event.preventDefault();
     const { name, email, password } = this.state;
     this.props
       .dispatchSignupUser({ name, email, password })
       .then(() => this.props.history.push(`/${this.props.data.name}`))
-      .catch((errors) => this.setState({ errors }))
+      .catch((errors) => this.setState({ errors, validated: true }))
   }
 
   render() {
@@ -39,33 +41,34 @@ class Signup extends React.Component {
       <Container className="position-relative p-3">
         <Card body style={{ width: '33rem' }} className='position-absolute start-50 translate-middle-x'>
           <Card.Body>
-            <Form onSubmit={this.handleSubmit}>
-            <h1 className='font-bold text-3xl mb-2'>Sign Up</h1>
-        <p className='h-8 text-red-400'>{this.state.errors.status.message}</p>
+            <Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
+              <h1 className='font-bold text-3xl mb-2'>Sign Up</h1>
+              <p className='h-8 text-red-400'><small>{console.log(this.state.errors)}</small></p>
 
-        <Form.Group className="mb-3" controlId="formBasicName">
+              <Form.Group className="mb-3" >
                 <FloatingLabel
-                  controlId="floatingInput"
+                  // controlId="floatingInput"
                   label="Your name"
                   className="mb-3 text-muted"
                 >
                   <Form.Control
+                    required
                     type="name"
                     placeholder="Enter your name"
                     name='name'
                     // id='email'
-                    onChange={this.handleChange}
-                    value={this.state.name}
+                    // onChange={this.handleChange}
+                    // value={this.state.name}
                   />
+                  <Form.Control.Feedback type="invalid">
+                    Please provide a valid zip.
+                  </Form.Control.Feedback>
                 </FloatingLabel>
-                <Form.Text className="text-muted">
-                  We'll never share your email with anyone else.
-                </Form.Text>
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Group className="mb-3" >
                 <FloatingLabel
-                  controlId="floatingInput"
+                  // controlId="floatingInput"
                   label="Email address"
                   className="mb-3 text-muted"
                 >
@@ -73,7 +76,7 @@ class Signup extends React.Component {
                     type="email"
                     placeholder="Enter email"
                     name='email'
-                    // id='email'
+                    id='email'
                     onChange={this.handleChange}
                     value={this.state.email}
                   />
@@ -83,9 +86,9 @@ class Signup extends React.Component {
                 </Form.Text>
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Group className="mb-3" >
                 <FloatingLabel
-                  controlId="floatingInput"
+                  // controlId="floatingInput"
                   label="Password"
                   className="mb-3 text-muted"
                 >
@@ -100,11 +103,11 @@ class Signup extends React.Component {
                 </FloatingLabel>
 
               </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicCheckbox">
+              <Form.Group className="mb-3" /*controlId="formBasicCheckbox"*/>
                 <Form.Check type="checkbox" label="Check me out" />
               </Form.Group>
               <Button variant="primary" type="submit" >
-              Sign Up
+                Sign Up
               </Button>
             </Form>
           </Card.Body>
@@ -117,7 +120,7 @@ class Signup extends React.Component {
   }
 }
 
-const mapStateToProps = ( s ) => {
+const mapStateToProps = (s) => {
   console.log(s)
 
   return { data: s.auth.currentUser.data }
