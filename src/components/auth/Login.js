@@ -1,17 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import { signupUser } from "../../actions/auth";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import { loginUser } from "../../actions/auth";
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
-// import Toast from 'react-bootstrap/Toast';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
-// import Navbar from 'react-bootstrap/Navbar';
-// import NavDropdown from 'react-bootstrap/NavDropdown';
-// import Nav from 'react-bootstrap/Nav';
 
-class Signup extends React.Component {
+class Login extends React.Component {
   state = {
     email: "",
     password: "",
@@ -25,13 +21,12 @@ class Signup extends React.Component {
   };
 
   handleSubmit = (event) => {
-
     event.preventDefault();
-    const { name, email, password } = this.state;
+    const { email, password } = this.state;
     this.props
-      .dispatchSignupUser({ name, email, password })
-      .then(() => this.props.history.push(`/${this.props.data.name}`))
-      .catch((errors) => this.setState({ errors, validated: true }))
+    .dispatchLoginUser({ email, password })
+    .then(() => this.props.history.push(`/${this.props.data.name}`))
+    .catch(() => this.setState({ error: true }))
   }
 
   render() {
@@ -52,8 +47,6 @@ class Signup extends React.Component {
                   className="mb-3 text-muted"
                 >
                   <Form.Control
-                    isInvalid={!!this.state.errors.status.email?.[0]}
-
                     type="email"
                     placeholder="Enter email"
                     name='email'
@@ -61,22 +54,17 @@ class Signup extends React.Component {
                     onChange={this.handleChange}
                     value={this.state.email}
                   />
-                  <Form.Control.Feedback type="invalid">
-                    <small>Email {this.state.errors.status.email?.[0]}</small>
-                  </Form.Control.Feedback>
                 </FloatingLabel>
                 {/* <Form.Text className="text-muted">
                   We'll never share your email with anyone else.
                 </Form.Text> */}
               </Form.Group>
-
               <Form.Group className="mb-3" >
                 <FloatingLabel
                   label="Password"
                   className="mb-3 text-muted"
                 >
                   <Form.Control
-                    isInvalid={!!this.state.errors.status.password?.[0]}
                     type="password"
                     placeholder="Password"
                     name='password'
@@ -84,14 +72,11 @@ class Signup extends React.Component {
                     onChange={this.handleChange}
                     value={this.state.password}
                   />
-                  <Form.Control.Feedback type="invalid">
-                    <small>Password {this.state.errors.status.password?.[0]}</small>
-                  </Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
               
               <Button variant="primary" type="submit" >
-                Sign Up
+                Log in
               </Button>
             </Form>
           </Card.Body>
@@ -104,16 +89,15 @@ class Signup extends React.Component {
   }
 }
 
-const mapStateToProps = (s) => {
-  console.log(s)
-
-  return { data: s.auth.currentUser.data }
+const mapStateToProps = ( { auth: {currentUser: { data } } } ) => {
+  // console.log(data)
+  return { data }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    dispatchSignupUser: (credentials) => dispatch(signupUser(credentials))
+    dispatchLoginUser: (credentials) => dispatch(loginUser(credentials))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

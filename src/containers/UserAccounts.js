@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
+import AccountsList from './AccountsList'
 // import { checkAuth } from "../actions/auth";
 
 
@@ -8,40 +9,35 @@ class UserAccounts extends React.Component {
   // componentDidMount() {
   //   this.props.dispatchCheckAuth();
   // }
-  
-  
+
+
   render() {
-    
-    // this.props.dispatchCheckAuth();
-    // console.log(this.props.auth.currentUser.data.accounts.length)
     return (
       <>
-      <p>hello {this.props.auth.currentUser.data.name}</p>
-      <p>accounts: {this.props.auth.currentUser.data.accounts.length}</p>
-      {this.props.auth.currentUser.data.accounts.length > 0 ?
-      <>
-      {/* {this.props.auth.currentUser.data.accounts[1].exp} */}
-      <p>
-      <NavLink exact to='/new_account'>click here to add new account</NavLink>
-      </p>
+        <p>Hello {this.props.data.name}</p>
+        {this.props.data.accounts.length > 0 ?
+          <>
+            <AccountsList  accounts={ this.props.data.accounts } />
+            <p>
+              <NavLink exact to='/new_account'>click here to add new account</NavLink>
+            </p>
+          </>
+          :
+          <>
+            <p>It seems like you don't have any regestered bank accounts yet</p>
+            <NavLink exact to='/new_account'>click here to add new account</NavLink>
+          </>
+        }
       </>
-        :
-        <>
-          <p>It seems like you don't have any regestered bank accounts yet</p>
-          <NavLink exact to='/new_account'>click here to add new account</NavLink>
-        </>
-  }
-        </>
-        
+
 
     )
   }
 
 }
 
-const mapStateToProps = ({ auth }) => {
-  // console.log(auth)
-  return { auth }
+const mapStateToProps = ({ auth: { currentUser: { data } } }) => {
+  return { data }
 }
 // const mapDispatchToProps = (dispatch) => {
 //   return {
