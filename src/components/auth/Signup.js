@@ -41,7 +41,7 @@ class Signup extends React.Component {
       <Container className="position-relative p-3">
         <Card body style={{ width: '33rem' }} className='position-absolute start-50 translate-middle-x'>
           <Card.Body>
-            <Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
+            <Form noValidate onSubmit={this.handleSubmit}>
               <h1 className='font-bold text-3xl mb-2'>Sign Up</h1>
               <p className='h-8 text-red-400'><small>{console.log(this.state.errors)}</small></p>
 
@@ -52,16 +52,15 @@ class Signup extends React.Component {
                   className="mb-3 text-muted"
                 >
                   <Form.Control
-                    required
+                    isInvalid={!!this.state.errors.status.name?.[0]}
                     type="name"
                     placeholder="Enter your name"
                     name='name'
-                  // id='email'
-                  // onChange={this.handleChange}
-                  // value={this.state.name}
+                    onChange={this.handleChange}
+                    value={this.state.name}
                   />
                   <Form.Control.Feedback type="invalid">
-                    Name {this.state.errors.status.name[0]}
+                    <small>Name {this.state.errors.status.name?.[0]}</small>
                   </Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
@@ -73,30 +72,31 @@ class Signup extends React.Component {
                   className="mb-3 text-muted"
                 >
                   <Form.Control
-                    required
+                    isInvalid={!!this.state.errors.status.email?.[0]}
+
                     type="email"
                     placeholder="Enter email"
                     name='email'
-                    id='email'
+                    // id='email'
                     onChange={this.handleChange}
                     value={this.state.email}
                   />
                   <Form.Control.Feedback type="invalid">
-                    Email {this.state.errors.status.email[0]}
+                    <small>Email {this.state.errors.status.email?.[0]}</small>
                   </Form.Control.Feedback>
                 </FloatingLabel>
-                <Form.Text className="text-muted">
+                {/* <Form.Text className="text-muted">
                   We'll never share your email with anyone else.
-                </Form.Text>
+                </Form.Text> */}
               </Form.Group>
 
               <Form.Group className="mb-3" >
                 <FloatingLabel
-                  // controlId="floatingInput"
                   label="Password"
                   className="mb-3 text-muted"
                 >
                   <Form.Control
+                    isInvalid={!!this.state.errors.status.password?.[0]}
                     type="password"
                     placeholder="Password"
                     name='password'
@@ -104,12 +104,12 @@ class Signup extends React.Component {
                     onChange={this.handleChange}
                     value={this.state.password}
                   />
+                  <Form.Control.Feedback type="invalid">
+                    <small>Password {this.state.errors.status.password?.[0]}</small>
+                  </Form.Control.Feedback>
                 </FloatingLabel>
-
               </Form.Group>
-              <Form.Group className="mb-3" /*controlId="formBasicCheckbox"*/>
-                <Form.Check type="checkbox" label="Check me out" />
-              </Form.Group>
+              
               <Button variant="primary" type="submit" >
                 Sign Up
               </Button>
