@@ -1,83 +1,119 @@
 import React from "react";
 import { connect } from "react-redux";
-import { loginUser } from "../../actions/auth";
+import { signupUser } from "../../actions/auth";
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Card from 'react-bootstrap/Card';
+import Form from 'react-bootstrap/Form';
+// import Toast from 'react-bootstrap/Toast';
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
+// import Navbar from 'react-bootstrap/Navbar';
+// import NavDropdown from 'react-bootstrap/NavDropdown';
+// import Nav from 'react-bootstrap/Nav';
 
-class Login extends React.Component {
+class Signup extends React.Component {
   state = {
     email: "",
     password: "",
-    error: false
+    errors: false
   };
-
   handleChange = (event) => {
+    // console.log(this.props)
     this.setState({
       [event.target.name]: event.target.value
     });
   };
 
   handleSubmit = (event) => {
+
     event.preventDefault();
-    const { email, password } = this.state;
-    const st = this.props
-    .dispatchLoginUser({ email, password })
-    st.then(() => this.props.history.push(`/${this.props.data.name}`))
-    .catch(() => this.setState({ error: true }))
-    console.log(st)
-  };
+    const { name, email, password } = this.state;
+    this.props
+      .dispatchSignupUser({ name, email, password })
+      .then(() => this.props.history.push(`/${this.props.data.name}`))
+      .catch((errors) => this.setState({ errors, validated: true }))
+  }
 
   render() {
     return (
-      <form
-        onSubmit={this.handleSubmit}
-        className='w-11/12 max-w-2xl mx-auto mt-8'
-      >
-        <h1 className='font-bold text-3xl'>Log In</h1>
+      <Container className="position-relative p-3">
+        <Card body style={{ width: '33rem' }} className='position-absolute start-50 translate-middle-x'>
+          <Card.Body>
+            <Form noValidate onSubmit={this.handleSubmit}>
+            <h1 className='font-bold text-3xl'>Log In</h1>
         <p className="h-8 text-red-400">{this.state.error && "Invalid email or password"}</p>
-        <fieldset>
-          <label className='block uppercase mb-2' for='email'>
-            Email:
-          </label>
-          <input
-            type='text'
-            name='email'
-            id='email'
-            className='w-full border-2 focus:outline-none focus:ring-2 p-4 mb-4'
-            onChange={this.handleChange}
-            value={this.state.email}
-          />
-        </fieldset>
-        <fieldset>
-          <label className='block uppercase mb-2' for='password'>
-            Password:
-          </label>
-          <input
-            type='password'
-            name='password'
-            id='password'
-            className="w-full border-2 focus:outline-none focus:ring-2 p-4 mb-4"
-            onChange={this.handleChange}
-            value={this.state.password}
-          />
-        </fieldset>
-        <input
-          className='w-full text-center uppercase p-4 bg-blue-300 cursor-pointer mt-4'
-          type='submit'
-          value='Log In'
-        />
-      </form>
-    );
+
+              
+
+              <Form.Group className="mb-3" >
+                <FloatingLabel
+                  // controlId="floatingInput"
+                  label="Email address"
+                  className="mb-3 text-muted"
+                >
+                  <Form.Control
+                    isInvalid={!!this.state.errors.status.email?.[0]}
+
+                    type="email"
+                    placeholder="Enter email"
+                    name='email'
+                    // id='email'
+                    onChange={this.handleChange}
+                    value={this.state.email}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    <small>Email {this.state.errors.status.email?.[0]}</small>
+                  </Form.Control.Feedback>
+                </FloatingLabel>
+                {/* <Form.Text className="text-muted">
+                  We'll never share your email with anyone else.
+                </Form.Text> */}
+              </Form.Group>
+
+              <Form.Group className="mb-3" >
+                <FloatingLabel
+                  label="Password"
+                  className="mb-3 text-muted"
+                >
+                  <Form.Control
+                    isInvalid={!!this.state.errors.status.password?.[0]}
+                    type="password"
+                    placeholder="Password"
+                    name='password'
+                    // id='password'
+                    onChange={this.handleChange}
+                    value={this.state.password}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    <small>Password {this.state.errors.status.password?.[0]}</small>
+                  </Form.Control.Feedback>
+                </FloatingLabel>
+              </Form.Group>
+              
+              <Button variant="primary" type="submit" >
+                Sign Up
+              </Button>
+            </Form>
+          </Card.Body>
+        </Card>
+
+        {/* </div> */}
+
+      </Container>
+    )
   }
 }
 
-const mapStateToProps = ( { auth: {currentUser: { data } } } ) => {
-  // console.log(data)
-  return { data }
+const mapStateToProps = (s) => {
+  console.log(s)
+
+  return { data: s.auth.currentUser.data }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    dispatchLoginUser: (credentials) => dispatch(loginUser(credentials))
+    dispatchSignupUser: (credentials) => dispatch(signupUser(credentials))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

@@ -1,97 +1,82 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { signupUser } from "../../actions/auth";
-import InputGroup from 'react-bootstrap/InputGroup';
-import Row from 'react-bootstrap/Row';
-import Form from 'react-bootstrap/Form';
-// import Toast from 'react-bootstrap/Toast';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-// import Navbar from 'react-bootstrap/Navbar';
-// import NavDropdown from 'react-bootstrap/NavDropdown';
-// import Nav from 'react-bootstrap/Nav';
+import { loginUser } from "../../actions/auth";
 
-export default function Signup() {
-  const [validated, setValidated] = useState(false);
-
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    // if (form.checkValidity() === false) {
-      event.preventDefault();
-      // event.stopPropagation();
-    // }
-
-    setValidated(true);
+class Login extends React.Component {
+  state = {
+    email: "",
+    password: "",
+    error: false
   };
 
-  return (
-    <Form noValidate validated={validated} onSubmit={handleSubmit}>
-        <Form.Group md="4" >
-          <Form.Label>First name</Form.Label>
-          <Form.Control
-            required
-            type="text"
-            placeholder="First name"
-            defaultValue="Mark"
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const { email, password } = this.state;
+    this.props
+    .dispatchLoginUser({ email, password })
+    .then(() => this.props.history.push(`/${this.props.data.name}`))
+    .catch(() => this.setState({ error: true }))
+  };
+
+  render() {
+    return (
+      <form
+        onSubmit={this.handleSubmit}
+        className='w-11/12 max-w-2xl mx-auto mt-8'
+      >
+        <h1 className='font-bold text-3xl'>Log In</h1>
+        <p className="h-8 text-red-400">{this.state.error && "Invalid email or password"}</p>
+        <fieldset>
+          <label className='block uppercase mb-2' for='email'>
+            Email:
+          </label>
+          <input
+            type='text'
+            name='email'
+            id='email'
+            className='w-full border-2 focus:outline-none focus:ring-2 p-4 mb-4'
+            onChange={this.handleChange}
+            value={this.state.email}
           />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group md="4" >
-          <Form.Label>Last name</Form.Label>
-          <Form.Control
-            required
-            type="text"
-            placeholder="Last name"
-            defaultValue="Otto"
+        </fieldset>
+        <fieldset>
+          <label className='block uppercase mb-2' for='password'>
+            Password:
+          </label>
+          <input
+            type='password'
+            name='password'
+            id='password'
+            className="w-full border-2 focus:outline-none focus:ring-2 p-4 mb-4"
+            onChange={this.handleChange}
+            value={this.state.password}
           />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group  md="4" >
-          <Form.Label>Username</Form.Label>
-          {/* <InputGroup > */}
-            <Form.Control
-              type="text"
-              placeholder="Username"
-              aria-describedby="inputGroupPrepend"
-              required
-            />
-            <Form.Control.Feedback type="invalid">
-              Please choose a username.
-            </Form.Control.Feedback>
-          {/* </InputGroup> */}
-        </Form.Group>
-        <Form.Group  md="6" >
-          <Form.Label>City</Form.Label>
-          <Form.Control type="text" placeholder="City" required />
-          <Form.Control.Feedback type="invalid">
-            Please provide a valid city.
-          </Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group  md="3" >
-          <Form.Label>State</Form.Label>
-          <Form.Control type="text" placeholder="State" required />
-          <Form.Control.Feedback type="invalid">
-            Please provide a valid state.
-          </Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group  md="3" >
-          <Form.Label>Zip</Form.Label>
-          <Form.Control type="text" placeholder="Zip" required />
-          <Form.Control.Feedback type="invalid">
-            Please provide a valid zip.
-          </Form.Control.Feedback>
-        </Form.Group>
-      
-      <Form.Group className="mb-3">
-        <Form.Check
-          required
-          label="Agree to terms and conditions"
-          feedback="You must agree before submitting."
+        </fieldset>
+        <input
+          className='w-full text-center uppercase p-4 bg-blue-300 cursor-pointer mt-4'
+          type='submit'
+          value='Log In'
         />
-      </Form.Group>
-      <Button type="submit">Submit form</Button>
-    </Form>
-  );
+      </form>
+    );
+  }
 }
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Signup);
+const mapStateToProps = ( { auth: {currentUser: { data } } } ) => {
+  // console.log(data)
+  return { data }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatchLoginUser: (credentials) => dispatch(loginUser(credentials))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
