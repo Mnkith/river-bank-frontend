@@ -11,7 +11,7 @@ import Button from 'react-bootstrap/Button';
 class NewAccount extends React.Component {
 
   state = {
-    acccount_type: "",
+    account_type: "",
     number: "",
     exp: "",
     errors: { status: { message: "" } }
@@ -32,9 +32,9 @@ class NewAccount extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const available_balance = this.getRandomBalance(300000, 700000)
-    const { acccount_type, number, exp } = this.state;
+    const { account_type, number, exp } = this.state;
     this.props
-      .addAccount({ acccount_type, number, exp, available_balance, user_id: this.props.data.id })
+      .addAccount({ account_type, number, exp, available_balance, user_id: this.props.data.id })
       .then(() => this.props.history.push(`/${this.props.data.name}`))
       .catch((errors) => this.setState({ errors }));
   };
@@ -52,7 +52,7 @@ class NewAccount extends React.Component {
                 <Form.Select
                   className="me-sm-2" id="inlineFormCustomSelect"
                   onChange={this.handleChange}
-                  name='acccount_type'
+                  name='account_type'
                 >
                   <option >Select account type</option>
                   <option name='type' value="Checking">Checking</option>
