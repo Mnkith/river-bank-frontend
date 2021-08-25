@@ -52,7 +52,7 @@ class Signup extends React.Component {
                   className="mb-3 text-muted"
                 >
                   <Form.Control
-                    isInvalid={!!this.state.errors.status.name?.[0]}
+                    isInvalid={!!this.state.errors.status?.name?.[0]}
                     type="name"
                     placeholder="Enter your name"
                     name='name'
@@ -60,7 +60,7 @@ class Signup extends React.Component {
                     value={this.state.name}
                   />
                   <Form.Control.Feedback type="invalid">
-                    <small>Name {this.state.errors.status.name?.[0]}</small>
+                    <small>Name {this.state.errors.status?.name?.[0]}</small>
                   </Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
@@ -72,7 +72,7 @@ class Signup extends React.Component {
                   className="mb-3 text-muted"
                 >
                   <Form.Control
-                    isInvalid={!!this.state.errors.status.email?.[0]}
+                    isInvalid={!!this.state.errors.status?.email?.[0]}
 
                     type="email"
                     placeholder="Enter email"
@@ -82,7 +82,7 @@ class Signup extends React.Component {
                     value={this.state.email}
                   />
                   <Form.Control.Feedback type="invalid">
-                    <small>Email {this.state.errors.status.email?.[0]}</small>
+                    <small>Email {this.state.errors.status?.email?.[0]}</small>
                   </Form.Control.Feedback>
                 </FloatingLabel>
                 {/* <Form.Text className="text-muted">
@@ -96,7 +96,7 @@ class Signup extends React.Component {
                   className="mb-3 text-muted"
                 >
                   <Form.Control
-                    isInvalid={!!this.state.errors.status.password?.[0]}
+                    isInvalid={!!this.state.errors.status?.password?.[0]}
                     type="password"
                     placeholder="Password"
                     name='password'
@@ -105,7 +105,7 @@ class Signup extends React.Component {
                     value={this.state.password}
                   />
                   <Form.Control.Feedback type="invalid">
-                    <small>Password {this.state.errors.status.password?.[0]}</small>
+                    <small>Password {this.state.errors.status?.password?.[0]}</small>
                   </Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>

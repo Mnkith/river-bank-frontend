@@ -56,10 +56,8 @@ export const loginUser = (credentials) => {
         setToken(res.headers.get("Authorization"));
         const user= res
           .json()
-          .then((userJson) =>{ console.log(userJson)
-            dispatch({ type: AUTHENTICATED, payload: userJson })}
+          .then((userJson) => dispatch({ type: AUTHENTICATED, payload: userJson })
           );
-          console.log(user)
           return user
       } else {
         return res.json().then((errors) => {
