@@ -57,14 +57,14 @@ class Navbar extends React.Component {
             >
               Home
             </NavLink>
-            <NavLink
+            {/* <NavLink
               className='p-4 block sm:inline-block'
               activeClassName='text-blue-900'
               exact
               to='/protected_route'
             >
               ProtectedRoute
-            </NavLink>
+            </NavLink> */}
           </div>
           <div className='sm:text-right'>
             {this.renderAuthLinks()}
