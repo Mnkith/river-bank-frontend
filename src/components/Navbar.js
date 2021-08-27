@@ -53,7 +53,7 @@ class Navbar extends React.Component {
               className='p-4 block sm:inline-block'
               activeClassName='text-blue-900'
               exact
-              to='/'
+              to={this.props.loggedIn ? `/${this.props.currentUser.data.name}` : '/'}
             >
               Home
             </NavLink>
