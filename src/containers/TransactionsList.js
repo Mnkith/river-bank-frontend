@@ -6,12 +6,11 @@ import Transaction from '../components/Transaction'
 import { Route, useParams, Switch } from "react-router-dom";
 
 export default function TransactionList(props) {
-  console.log('intransactions' ,useParams().id, props.accounts[useParams().id].transactions)
-  const transactions = props.accounts[useParams().id].transactions
+  const transactions = props.accounts[useParams().id - 1].transactions
   return (
     // <p>ghhh</p>
     <p  >
-      <Card backdrop border="primary" style={{ width: '80%', 'z-index': '2000', opacity: .9  }} className='  position-absolute centered start-50 translate-middle-x'>
+  <Card backdrop border="primary" style={{ width: '80%', 'z-index': '2000' }} className='  position-absolute centered start-50 translate-middle-x'>
   <Card.Body>
     <Card.Title>Transactions</Card.Title>
     <Card.Text>
@@ -20,11 +19,11 @@ export default function TransactionList(props) {
           <tr > 
             <th>#</th>
             <th>Date</th>
-            <th>Amount</th>
             <th>Description</th>
+            <th>Amount</th>
           </tr>
         </thead>
-        <tbody class="card text-white bg-secondary mb-3">
+        <tbody class="text-white bg-secondary ">
           {transactions.map((transaction, index) => <Transaction className='lead h4' key={index} transaction={transaction} index={index} />)}
         </tbody>
       </Table>
@@ -32,7 +31,7 @@ export default function TransactionList(props) {
     
   </Card.Body>
   <Card.Footer className='text-end'>
-      <Button href='/munkith'  variant="primary">Go somewhere</Button>
+      <Button href='/munkith'  variant="primary">Back to Accounts</Button>
     </Card.Footer>
 </Card>
   </p>
