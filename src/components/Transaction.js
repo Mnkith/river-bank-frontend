@@ -7,7 +7,7 @@ export default function Transaction(props) {
         <td>{props.index + 1}</td>
         <td>{props.transaction.transaction_date}</td>
         <td>{props.transaction.description}</td>
-        <td>{props.transaction.amount}</td>
+        <td>${props.transaction.amount}</td>
        
       </tr>
     </>

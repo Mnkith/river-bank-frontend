@@ -6,7 +6,7 @@ import Transaction from '../components/Transaction'
 import { Route, useParams, Switch } from "react-router-dom";
 
 export default function TransactionList(props) {
-  const transactions = props.accounts[useParams().id - 1].transactions
+  // const transactions = props.accounts[useParams().id - 1].transactions
   return (
     // <p>ghhh</p>
     <p  >
@@ -24,7 +24,7 @@ export default function TransactionList(props) {
           </tr>
         </thead>
         <tbody >
-          {transactions.map((transaction, index) => <Transaction className='lead h4' key={index} transaction={transaction} index={index} />)}
+          {props.account.transactions.map((transaction, index) => <Transaction className='lead h4' key={index} transaction={transaction} index={index} />)}
         </tbody>
       </Table>
     </Card.Text >

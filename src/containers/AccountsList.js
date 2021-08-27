@@ -5,10 +5,12 @@ import { Route, useParams, Switch } from "react-router-dom";
 import TransactionsList from './TransactionsList'
 
 const AccountsList = ({ accounts }) => {
+  const account_id = parseInt(useParams().id)
+  // debugger
   return (
     <p class='container'>
       <Switch>
-        <Route path='/:id/transactions' render={rp => <TransactionsList {...rp} accounts= {accounts} />} />
+        <Route path='/:id/transactions' render={rp => <TransactionsList {...rp} account= {accounts.find( account => account.id === account_id )} />} />
       </Switch>
     
       <Table striped bordered hover>

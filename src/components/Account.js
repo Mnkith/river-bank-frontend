@@ -11,7 +11,7 @@ const Account = (props) => {
       <tr class='lead '>
       <td>{props.index + 1}</td>
       <td>{props.account.account_type}</td>
-      <td>{props.account.available_balance}</td>
+      <td>${props.account.available_balance}</td>
       <td>{props.account.exp}</td>
       <td><Button href={`/${props.account.id}/transactions`} variant="primary" >
         Show transactions <Badge pill bg="info">{props.account.transactions.length}</Badge>
