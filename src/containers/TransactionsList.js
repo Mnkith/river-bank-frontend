@@ -23,7 +23,7 @@ export default function TransactionList(props) {
             <th>Amount</th>
           </tr>
         </thead>
-        <tbody class="text-white bg-secondary ">
+        <tbody >
           {transactions.map((transaction, index) => <Transaction className='lead h4' key={index} transaction={transaction} index={index} />)}
         </tbody>
       </Table>
