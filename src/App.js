@@ -7,6 +7,7 @@ import Login from "./components/auth/Login";
 import withAuth from "./components/auth/withAuth";
 import NewAccount from "./components/NewAccount";
 import UserAccounts from './containers/UserAccounts'
+import TransactionsList from './containers/TransactionsList'
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route exact path='/signup' component={Signup} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/new_account' component={NewAccount} />
+          <Route exact path='/Transactions' component={withAuth(TransactionsList)} />
           <Route exact path='/:name' component={ withAuth(UserAccounts) } />
         </Switch>
       </Router>
