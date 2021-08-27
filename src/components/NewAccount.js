@@ -46,7 +46,7 @@ class NewAccount extends React.Component {
           <Card.Body>
             <Form onSubmit={this.handleSubmit}>
               <h1 className='font-bold text-3xl mb-2'>Add new bank account</h1>
-              <p className='h-8 text-red-400'><small>{this.state.errors.status.message}</small></p>
+              <p className='h-8 text-red-400'><small>{this.state.errors.status?.message}</small></p>
               <Form.Group className="mb-3" >
 
                 <Form.Select

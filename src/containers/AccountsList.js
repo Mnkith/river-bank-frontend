@@ -12,6 +12,7 @@ const AccountsList = ({ accounts }) => {
           <th>Current Ballance</th>
           {/* <th>Account Number</th> */}
           <th>Expiration Date</th>
+          <th>Transactions</th>
         </tr>
       </thead>
       <tbody>
