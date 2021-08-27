@@ -29,7 +29,7 @@ function App() {
           <Route exact path='/login' component={Login} />
           <Route exact path='/new_account' component={NewAccount} />
           
-          <Route exact path='/:name' component={ withAuth(UserAccounts) } />
+          <Route  path='/:id' component={ withAuth(UserAccounts) } />
         </Switch>
       </Router>
     </div>

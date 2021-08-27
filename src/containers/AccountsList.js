@@ -1,13 +1,16 @@
 import React from "react";
 import Table from 'react-bootstrap/Table';
 import Account from '../components/Account'
-import { Route } from "react-router-dom";
+import { Route, useParams, Switch } from "react-router-dom";
 import TransactionsList from './TransactionsList'
 
 const AccountsList = ({ accounts }) => {
   return (
     <p class='container'>
-    <Route exact path='/transactions' component={TransactionsList} />
+      <Switch>
+        <Route path='/:id/transactions' render={rp => <TransactionsList {...rp} accounts= {accounts} />} />
+      </Switch>
+    
       <Table striped bordered hover>
         <thead>
           <tr>

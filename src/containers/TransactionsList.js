@@ -2,8 +2,12 @@ import React from "react";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
+import Transaction from '../components/Transaction'
+import { Route, useParams, Switch } from "react-router-dom";
 
-export default function TransactionList() {
+export default function TransactionList(props) {
+  console.log('intransactions' ,useParams().id, props.accounts[useParams().id].transactions)
+  const transactions = props.accounts[useParams().id].transactions
   return (
     // <p>ghhh</p>
     <p  >
@@ -15,15 +19,13 @@ export default function TransactionList() {
         <thead class='bg-primary text-light'>
           <tr > 
             <th>#</th>
-            <th>Account Type</th>
-            <th>Current Ballance</th>
-            {/* <th>Account Number</th> */}
-            <th>Expiration Date</th>
-            <th>Transactions</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Description</th>
           </tr>
         </thead>
         <tbody class="card text-white bg-secondary mb-3">
-          {/* {accounts.map((account, index) => <Account className='lead h4' key={index} account={account} index={index} />)} */}
+          {transactions.map((transaction, index) => <Transaction className='lead h4' key={index} transaction={transaction} index={index} />)}
         </tbody>
       </Table>
     </Card.Text >
