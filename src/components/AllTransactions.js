@@ -12,7 +12,7 @@ import Container from 'react-bootstrap/Container';
 
 class AllTransactions extends React.Component {
   // const transactions = props.accounts[useParams().id - 1].transactions
-  at = this.props.data.accounts.map(acc => acc.transactions.map((transaction) => transaction)).flat()
+  at = this.props.data.accounts.map(acc => acc.transactions).flat()
 
 
   state = {
