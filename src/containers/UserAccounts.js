@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import AccountsList from './AccountsList'
+
 // import { checkAuth } from "../actions/auth";
 
 
@@ -19,7 +20,8 @@ class UserAccounts extends React.Component {
           <>
             <AccountsList  accounts={ this.props.data.accounts } userName={ this.props.data.name } />
             <p>
-              <NavLink exact to='/new_account'>click here to add new account</NavLink>
+              <NavLink exact to='/new_account'>click here to add new account</NavLink><hr></hr>
+            <NavLink exact to='/all_transactions' >show all transactions</NavLink>
             </p>
           </>
           :
