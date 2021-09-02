@@ -35,24 +35,44 @@ class AllTransactions extends React.Component {
       return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-   const capped = capitalize(this.state.keyWord)
+    const capped = capitalize(this.state.keyWord)
 
 
     const filtered = this.at.filter(t => t.description === capped)
-
-    this.setState({
-      transactions: filtered
-    });
+    if (filtered.length > 0)
+      this.setState({
+        transactions: filtered
+      });
+      else this.resetTransactions()
 
 
   }
   resetTransactions = (event) => {
     this.setState({
+      keyWord: '',
       transactions: this.at
     });
   }
+
+
+  sort = () => {
+    const ar = this.at.slice()
+    ar.sort((a, b) => {
+      if (a.description.toUpperCase() > b.description.toUpperCase()) {
+        return 1
+      }
+      if (a.description.toUpperCase() < b.description.toUpperCase()) {
+        return -1
+      }
+      return 0;
+    })
+    console.log(ar)
+    this.setState({
+      transactions: ar
+    });
+  }
+
   render() {
-    console.log(this.at)
     return (
       // <p>ghhh</p>
       <>
@@ -102,6 +122,10 @@ class AllTransactions extends React.Component {
             </Form>
             <Button onClick={this.resetTransactions} variant="primary" type="submit" >
               Back to all transactions
+            </Button>
+
+            <Button onClick={this.sort} variant="primary" type="submit" >
+              sort
             </Button>
 
             <Card.Footer className='text-end'>
