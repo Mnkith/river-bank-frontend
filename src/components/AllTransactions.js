@@ -43,7 +43,7 @@ class AllTransactions extends React.Component {
       this.setState({
         transactions: filtered
       });
-      else this.resetTransactions()
+    else this.resetTransactions()
 
 
   }
@@ -79,6 +79,9 @@ class AllTransactions extends React.Component {
         <Card border="primary" style={{ width: '80%', 'zIndex': '2000' }} className='  position-absolute centered start-50 translate-middle-x'>
           <Card.Body>
             <Card.Title>Transactions</Card.Title>
+            <Card.Text>
+              <p>total of {this.at.length} transactions:</p>
+            </Card.Text>
             {/* <Card.Text> */}
             <Table striped bordered hover>
               <thead className='bg-primary text-light'>
