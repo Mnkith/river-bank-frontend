@@ -3,13 +3,13 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import Transaction from '../components/Transaction'
-import { Route, useParams, Switch } from "react-router-dom";
 
-export default function TransactionList(props) {
+  function TransactionsList({ accounts, userName, match }) {
   // const transactions = props.accounts[useParams().id - 1].transactions
+  let account = accounts.find( acc => acc.id === parseInt(match.params.id))
   return (
     // <p>ghhh</p>
-    <p  >
+    <>
   <Card backdrop border="primary" style={{ width: '80%', 'z-index': '2000' }} className='  position-absolute centered start-50 translate-middle-x'>
   <Card.Body>
     <Card.Title>Transactions</Card.Title>
@@ -24,17 +24,19 @@ export default function TransactionList(props) {
           </tr>
         </thead>
         <tbody >
-          {props.account.transactions.map((transaction, index) => <Transaction className='lead h4' key={index} transaction={transaction} index={index} />)}
+          {account.transactions.map((transaction, index) => <Transaction className='lead h4' key={index} transaction={transaction} index={index} />)}
         </tbody>
       </Table>
     </Card.Text >
     
   </Card.Body>
   <Card.Footer className='text-end'>
-      <Button href='/munkith'  variant="primary">Back to Accounts</Button>
+      <Button href={`/${userName}`} variant="primary">Back to Accounts</Button>
     </Card.Footer>
 </Card>
-  </p>
+  </>
 
   )
 }
+
+export {TransactionsList}

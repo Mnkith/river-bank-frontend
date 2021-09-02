@@ -1,12 +1,14 @@
-import React from "react";
 import { connect } from "react-redux";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { loginUser } from "../../actions/auth";
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
-
+const React = require("react");
+const B = require('react-bootstrap');
+// const fs = require('fs');
+// const data = fs.readFileSync('/readme.md'); // blocks here until file is read
+// console.log(data);
 class Login extends React.Component {
   state = {
     email: "",
@@ -75,9 +77,9 @@ class Login extends React.Component {
                 </FloatingLabel>
               </Form.Group>
               
-              <Button variant="primary" type="submit" >
+              <B.Button variant="primary" type="submit" >
                 Log in
-              </Button>
+              </B.Button>
             </Form>
           </Card.Body>
         </Card>

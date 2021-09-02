@@ -15,10 +15,7 @@ function withAuth(WrappedComponent) {
         return <LoadingSpinner />;
       } else if (!this.props.loggedIn) {
         return (
-          // <>
             <Login />
-            // {/* <p>You need to login to view this page.</p> */}
-          // </>
         );
       } else {
         return <WrappedComponent {...this.props} />;

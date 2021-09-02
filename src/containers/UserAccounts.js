@@ -17,7 +17,7 @@ class UserAccounts extends React.Component {
         <p>Hello {this.props.data.name}</p>
         {this.props.data.accounts.length > 0 ?
           <>
-            <AccountsList  accounts={ this.props.data.accounts } />
+            <AccountsList  accounts={ this.props.data.accounts } userName={ this.props.data.name } />
             <p>
               <NavLink exact to='/new_account'>click here to add new account</NavLink>
             </p>
