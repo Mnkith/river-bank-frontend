@@ -80,7 +80,7 @@ class AllTransactions extends React.Component {
           <Card.Body>
             <Card.Title>Transactions</Card.Title>
             <Card.Text>
-              <p>total of {this.at.length} transactions:</p>
+              <p>total of {this.state.transactions.length} transactions:</p>
             </Card.Text>
             {/* <Card.Text> */}
             <Table striped bordered hover>
