@@ -76,6 +76,7 @@ class AllTransactions extends React.Component {
     return (
       // <p>ghhh</p>
       <>
+      <p>total of {this.at.length} transactions:</p>
         <Card border="primary" style={{ width: '80%', 'zIndex': '2000' }} className='  position-absolute centered start-50 translate-middle-x'>
           <Card.Body>
             <Card.Title>Transactions</Card.Title>
