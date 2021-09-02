@@ -9,7 +9,6 @@ const Account = (props) => {
         <td>{props.account.account_type}</td>
         <td>${props.account.available_balance}</td>
         <td>{props.account.exp}</td>
-        {console.log(props.account)}
         <td><Button href={`/${props.account.id}/transactions`} variant="primary" >
           Show transactions <Badge pill bg="info">{props.account.transactions.length}</Badge>
           <span className="visually-hidden">unread messages</span>

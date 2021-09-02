@@ -1,7 +1,7 @@
 import React from "react";
 import Table from 'react-bootstrap/Table';
 import Account from '../components/Account'
-import { Route, useParams, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { TransactionsList } from './TransactionsList'
 
 class AccountsList extends React.PureComponent{

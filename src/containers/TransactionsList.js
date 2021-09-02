@@ -10,12 +10,12 @@ import Transaction from '../components/Transaction'
   return (
     // <p>ghhh</p>
     <>
-  <Card backdrop border="primary" style={{ width: '80%', 'z-index': '2000' }} className='  position-absolute centered start-50 translate-middle-x'>
+  <Card  border="primary" style={{ width: '80%', 'zIndex': '2000' }} className='  position-absolute centered start-50 translate-middle-x'>
   <Card.Body>
     <Card.Title>Transactions</Card.Title>
-    <Card.Text>
+    {/* <Card.Text> */}
     <Table striped bordered hover>
-        <thead class='bg-primary text-light'>
+        <thead className='bg-primary text-light'>
           <tr > 
             <th>#</th>
             <th>Date</th>
@@ -27,7 +27,7 @@ import Transaction from '../components/Transaction'
           {account.transactions.map((transaction, index) => <Transaction className='lead h4' key={index} transaction={transaction} index={index} />)}
         </tbody>
       </Table>
-    </Card.Text >
+    {/* </Card.Text > */}
     
   </Card.Body>
   <Card.Footer className='text-end'>
