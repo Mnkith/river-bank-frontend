@@ -13,7 +13,7 @@ const getToken = () => {
     return localStorage.getItem("token");
   }
 };
-
+ 
 export const signupUser = (credentials) => {
   return (dispatch) => {
     return fetch("http://localhost:3001/signup", {
@@ -25,6 +25,7 @@ export const signupUser = (credentials) => {
       body: JSON.stringify({ user: credentials })
     }).then((res) => {
       if (res.ok) {
+        console.log(res.headers.get("Authorization"))
         setToken(res.headers.get("Authorization"));
         return res
           .json()
@@ -54,6 +55,9 @@ export const loginUser = (credentials) => {
     }).then((res) => {
       if (res.ok) {
         setToken(res.headers.get("Authorization"));
+        // res.headers.forEach(h =>console.log(h,'\n'))
+        console.log(res.headers.get("Set-Cookie"))
+        
         const user= res
           .json()
           .then((userJson) => dispatch({ type: AUTHENTICATED, payload: userJson })
@@ -94,6 +98,7 @@ export const logoutUser = () => {
 export const checkAuth = () => {
   return (dispatch) => {
     return fetch("http://localhost:3001/current_user", {
+      // credentials: 'same-origin',
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",

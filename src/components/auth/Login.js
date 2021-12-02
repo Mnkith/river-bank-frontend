@@ -28,7 +28,7 @@ class Login extends React.Component {
     this.props
     .dispatchLoginUser({ email, password })
     .then(() => this.props.history.push(`/${this.props.data.name}`))
-    .catch(() => this.setState({ error: true }))
+    .catch(() => this.setState({ errors: true }))
   }
 
   render() {
@@ -38,7 +38,7 @@ class Login extends React.Component {
           <Card.Body>
             <Form noValidate onSubmit={this.handleSubmit}>
             <h1 className='font-bold text-3xl'>Log In</h1>
-        <p className="h-8 text-red-400">{this.state.error && "Invalid email or password"}</p>
+        <p className="h-8 text-red-400">{this.state.errors && "Invalid email or password"}</p>
 
               
 
