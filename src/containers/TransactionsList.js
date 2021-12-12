@@ -15,7 +15,14 @@ import Transaction from '../components/Transaction'
     <Card.Title>Transactions</Card.Title>
     {/* <Card.Text> */}
     <Table striped bordered hover>
-        
+        <thead className='bg-primary text-light'>
+          <tr > 
+            <th>#</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
         <tbody >
           {account.transactions.map((transaction, index) => <Transaction className='lead h4' key={index} transaction={transaction} index={index} />)}
         </tbody>
