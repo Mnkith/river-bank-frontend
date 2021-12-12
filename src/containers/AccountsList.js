@@ -15,7 +15,10 @@ class AccountsList extends React.PureComponent{
   render() {
     return (
       <>
-       
+        <Switch>
+          <Route path='/:id/transactions' render={(rp ) => <TransactionsList {...rp} accounts={this.props.accounts} userName={this.props.userName} />} />
+        </Switch>
+
         <Table striped bordered hover>
           <thead>
             <tr>
