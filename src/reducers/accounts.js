@@ -6,7 +6,6 @@ export default function accountsReducer(state = {}, action) {
       return state
       ;
     case 'ADD_ACCOUNT':
-      console.log('inside ADD_ACCOUNT', action.account)
       return action.account
       
     default:

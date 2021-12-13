@@ -55,9 +55,6 @@ export const loginUser = (credentials) => {
     }).then((res) => {
       if (res.ok) {
         setToken(res.headers.get("Authorization"));
-        // res.headers.forEach(h =>console.log(h,'\n'))
-        console.log(res.headers.get("Set-Cookie"))
-        
         const user= res
           .json()
           .then((userJson) => dispatch({ type: AUTHENTICATED, payload: userJson })
@@ -99,7 +96,6 @@ export const logoutUser = () => {
 export const checkAuth = () => {
   return (dispatch) => {
     return fetch("http://localhost:3001/current_user", {
-      // credentials: 'same-origin',
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",

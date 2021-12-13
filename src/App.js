@@ -9,7 +9,6 @@ import UserAccounts from './containers/UserAccounts'
 import AllTransactions from './components/AllTransactions'
 
 function App() {
-  // console.log(withAuth(ProtectedRoute))
   return (
     <div className='App'>
       <Router>
