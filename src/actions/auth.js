@@ -58,6 +58,7 @@ export const loginUser = (credentials) => {
           .json()
           .then((userJson) => dispatch({ type: AUTHENTICATED, payload: userJson })
           );
+          console.log(res);
           return user
       } else {
         return res.json().then((errors) => {

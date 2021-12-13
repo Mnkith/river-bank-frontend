@@ -39,9 +39,6 @@ class Login extends React.Component {
             <Form noValidate onSubmit={this.handleSubmit}>
             <h1 className='font-bold text-3xl'>Log In</h1>
         <p className="h-8 text-red-400">{this.state.error && "Invalid email or password"}</p>
-
-              
-
               <Form.Group className="mb-3" >
                 <FloatingLabel
                   // controlId="floatingInput"
@@ -57,9 +54,6 @@ class Login extends React.Component {
                     value={this.state.email}
                   />
                 </FloatingLabel>
-                {/* <Form.Text className="text-muted">
-                  We'll never share your email with anyone else.
-                </Form.Text> */}
               </Form.Group>
               <Form.Group className="mb-3" >
                 <FloatingLabel
