@@ -19,7 +19,8 @@ function App() {
           <Route exact path='/signup' component={Signup} />
           <Route exact path='/all_transactions' component={AllTransactions} />
           <Route exact path='/login' component={Login} />
-         
+          <Route exact path='/new_account' component={NewAccount} />
+          <Route  path='/:id' component={ withAuth(UserAccounts) } />
         </Switch>
       </Router>
     </div>
