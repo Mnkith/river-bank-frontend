@@ -18,9 +18,19 @@ class NewAccount extends React.Component {
     errors: { status: { message: "" } }
   };
 
+  formatter = (name, value) => {
+    if(name === 'number')
+      return value.replace(/\D/, '')
+    //   return value.replace(/(\D*)(\d{4}(?=\d))(\d{4}(?=\d))*/, (_, w1, p1, p2) => {
+    //     // console.log(w1)
+    //     return [p1, p2].join(' ')
+    //   })
+    // }
+  }
+
   handleChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: this.formatter(event.target.name, event.target.value)
     });
   };
 
@@ -67,7 +77,7 @@ class NewAccount extends React.Component {
                   className="mb-3 text-muted"
                 >
                   <Form.Control
-                    type="number"
+                    type="string"
                     pattern="\d*"
                     placeholder="Enter card number"
                     name='number'
