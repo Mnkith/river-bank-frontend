@@ -47,7 +47,6 @@ class Signup extends React.Component {
 
               <Form.Group className="mb-3" >
                 <FloatingLabel
-                  // controlId="floatingInput"
                   label="Your name"
                   className="mb-3 text-muted"
                 >
@@ -67,7 +66,6 @@ class Signup extends React.Component {
 
               <Form.Group className="mb-3" >
                 <FloatingLabel
-                  // controlId="floatingInput"
                   label="Email address"
                   className="mb-3 text-muted"
                 >

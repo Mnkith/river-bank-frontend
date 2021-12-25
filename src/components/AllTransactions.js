@@ -43,7 +43,7 @@ class AllTransactions extends React.Component {
     });
   }
   sort = () => {
-    const ar = this.at.slice()
+    const ar = [...this.at];
     ar.sort((a, b) => {
       if (a.description.toUpperCase() > b.description.toUpperCase()) {
         return 1
@@ -102,7 +102,7 @@ class AllTransactions extends React.Component {
               Back to all transactions
             </Button>
             <Button onClick={this.sort} variant="primary" type="submit" >
-              Sort
+              Sort By Type
             </Button>
             <Card.Footer className='text-end'>
               <Button href={`/${this.props.data.name}`} variant="primary">Back to Accounts</Button>

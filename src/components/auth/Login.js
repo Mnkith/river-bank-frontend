@@ -6,9 +6,6 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 const React = require("react");
 const B = require('react-bootstrap');
-// const fs = require('fs');
-// const data = fs.readFileSync('/readme.md'); // blocks here until file is read
-// console.log(data);
 class Login extends React.Component {
   state = {
     email: "",
@@ -16,7 +13,6 @@ class Login extends React.Component {
     errors: false
   };
   handleChange = (event) => {
-    // console.log(this.props)
     this.setState({
       [event.target.name]: event.target.value
     });
@@ -41,7 +37,6 @@ class Login extends React.Component {
         <p className="h-8 text-red-400">{this.state.error && "Invalid email or password"}</p>
               <Form.Group className="mb-3" >
                 <FloatingLabel
-                  // controlId="floatingInput"
                   label="Email address"
                   className="mb-3 text-muted"
                 >
@@ -49,7 +44,6 @@ class Login extends React.Component {
                     type="email"
                     placeholder="Enter email"
                     name='email'
-                    // id='email'
                     onChange={this.handleChange}
                     value={this.state.email}
                   />
@@ -64,7 +58,6 @@ class Login extends React.Component {
                     type="password"
                     placeholder="Password"
                     name='password'
-                    // id='password'
                     onChange={this.handleChange}
                     value={this.state.password}
                   />
@@ -77,16 +70,12 @@ class Login extends React.Component {
             </Form>
           </Card.Body>
         </Card>
-
-        {/* </div> */}
-
       </Container>
     )
   }
 }
 
 const mapStateToProps = ( { auth: {currentUser: { data } } } ) => {
-  // console.log(data)
   return { data }
 }
 

@@ -9,7 +9,6 @@ function withAuth(WrappedComponent) {
     componentDidMount() {
       this.props.dispatchCheckAuth();
     }
-
     render() {
       if (!this.props.authChecked) {
         return <LoadingSpinner />;
@@ -22,19 +21,16 @@ function withAuth(WrappedComponent) {
       }
     }
   }
-
   const mapStateToProps = ({
     auth: { authChecked, loggedIn, currentUser }
   }) => {
     return { authChecked, loggedIn, currentUser };
   };
-
   const mapDispatchToProps = (dispatch) => {
     return {
       dispatchCheckAuth: () => dispatch(checkAuth())
     };
   };
-
   return connect(mapStateToProps, mapDispatchToProps)(Wrapper);
 }
 

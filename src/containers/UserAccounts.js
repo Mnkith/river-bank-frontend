@@ -7,11 +7,6 @@ import AccountsList from './AccountsList'
 
 
 class UserAccounts extends React.Component {
-  // componentDidMount() {
-  //   this.props.dispatchCheckAuth();
-  // }
-
-
   render() {
     return (
       <>
